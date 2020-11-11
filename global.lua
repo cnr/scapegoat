@@ -123,6 +123,26 @@ function mkPlacemat(image)
     return token
 end
 
+function mkPlayerToken(image)
+    local tile = baseObj()
+    tile.Name = 'Custom_Tile'
+    tile.Hands = false
+    tile.CustomImage = {
+        ImageURL = image,
+        ImageScalar = 1.0,
+        CustomTile = {
+            Type = 2,
+            Thickness = 0.2,
+            Stackable = false,
+            Stretch = false
+        }
+    }
+    tile.Transform.scaleX = 0.6
+    tile.Transform.scaleZ = 0.6
+
+    return tile
+end
+
 -- Spawnable a => a -> IO ()
 function spawn(obj, pos, rotation, cb)
     local table = {json = JSON.encode(obj)}
@@ -135,7 +155,7 @@ end
 
 -- Object -> Pos -> Rotation -> Bool -> IO ()
 function dealTo(deckObj, pos, rotation, flipped)
-    deckObj.takeObject({position = pos or {}, rotation = rotation or {}, flip = flipped or false})
+    deckObj.takeObject({position = pos, rotation = rotation, flip = flipped or false})
 end
 
 ----- goats
@@ -450,4 +470,5 @@ spawn(deck, {-10,0,0}, {180,180,0}, function(obj)
 end)
 --]]
 
+spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"))
 --startGame()
