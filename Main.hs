@@ -23,13 +23,13 @@ cardWidth = 474
 
 main :: IO ()
 main = do
+    ---------- GOAT DECK
     redImg <- loadImage "../scapegoat_joe.png"
     blueImg <- loadImage "../scapegoat_bill.png"
     yellowImg <- loadImage "../scapegoat_outsourced.png"
     greenImg <- loadImage "../scapegoat_connor.png"
     brownImg <- loadImage "../scapegoat_brad.png"
     purpleImg <- loadImage "../scapegoat_lance.png"
-
 
     let red = Goat "joe" redImg (sRGB24 0xED 0x24 0x29)
     let blue = Goat "bill" blueImg (sRGB24 0x17 0xA3 0xDD)
@@ -48,14 +48,17 @@ main = do
     -- card with six goats on it
     let sixGoats = sixGoatCard red blue yellow green brown purple
     -- full-grey innocent goat card
-    let innocentCard = mkCard innocent innocent
+    let innocentCard = oneGoatCard innocent
 
     -- row 1 col 7 is six goats
     -- row 2 col 7 is innocent goat
-    renderSVG "deck.svg" nosize (cardMatrix ||| (sixGoats === innocentCard))
-    renderSVG "back.svg" nosize (oneGoatCard red)
+    renderSVG "goat_deck.svg" nosize (cardMatrix ||| (sixGoats === innocentCard))
 
-    -- placemats
+    backImg <- loadImage "../scapegoat_back.png"
+    let backGoat = Goat "back" backImg (sRGB24 0x77 0x05 0x51)
+    renderSVG "goat_back.svg" nosize (oneGoatCard backGoat)
+
+    ---------- GOAT PLACEMATS
     stepsImg <- loadImage "../turnsteps.png"
     renderSVG "placemat_red.svg" nosize $ mkPlacemat stepsImg red
     renderSVG "placemat_blue.svg" nosize $ mkPlacemat stepsImg blue

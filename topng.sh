@@ -2,8 +2,8 @@
 
 set -x
 
-convert deck.svg deck.png
-convert back.svg back.png
+convert goat_deck.svg goat_deck.png
+convert goat_back.svg goat_back.png
 
 convert placemat_red.svg placemat_red.png
 convert placemat_blue.svg placemat_blue.png
