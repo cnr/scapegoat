@@ -85,6 +85,15 @@ main = do
     renderSVG "locations_deck.svg" nosize locationsFront
     renderSVG "locations_back.svg" nosize locationsBack
 
+    ---------- TOKENS
+
+    renderSVG "token_red.svg" nosize $ mkToken red
+    renderSVG "token_blue.svg" nosize $ mkToken blue
+    renderSVG "token_yellow.svg" nosize $ mkToken yellow
+    renderSVG "token_green.svg" nosize $ mkToken green
+    renderSVG "token_brown.svg" nosize $ mkToken brown
+    renderSVG "token_purple.svg" nosize $ mkToken purple
+
 loadImage :: FilePath -> IO (Diagram SVG)
 loadImage path = loadImageEmb path >>= either (ioError . userError) (pure . image)
 
@@ -99,6 +108,18 @@ data Goat = Goat
 
 instance Eq Goat where
     (Goat n _ _) == (Goat n' _ _) = n == n'
+
+---------- Tokens
+
+tokenWidth :: Double
+tokenWidth = 237
+
+mkToken :: Goat -> Diagram SVG
+mkToken goat = scaled `atop` padder
+    where
+        scaled = goatImage goat # scaleUToX tokenWidth
+        maxDimension = max (width scaled) (height scaled)
+        padder = (rect maxDimension maxDimension :: Diagram SVG) # fillColor (goatColor goat) # lineWidth 0 # center
 
 ---------- Placemats
 

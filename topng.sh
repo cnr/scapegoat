@@ -14,3 +14,10 @@ convert placemat_purple.svg placemat_purple.png
 
 convert locations_deck.svg locations_deck.png
 convert locations_back.svg locations_back.png
+
+convert token_red.svg token_red.png
+convert token_blue.svg token_blue.png
+convert token_yellow.svg token_yellow.png
+convert token_green.svg token_green.png
+convert token_brown.svg token_brown.png
+convert token_purple.svg token_purple.png
