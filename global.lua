@@ -47,6 +47,14 @@ local function assetID(front)
     return key
 end
 
+function shuffleTable(t)
+    for i = #t, 2, -1 do
+        local n = math.random(i)
+        t[i], t[n] = t[n], t[i]
+    end
+    return t
+end
+
 -- URL -> URL -> Int -> Int -> Asset
 function mkAsset(front, back, width, height, extra)
     local res = {}
@@ -164,42 +172,49 @@ end
 --   { name :: String
 --   , ix :: Int
 --   , placemat :: URL
+--   , token :: URL
 --   }
 
 local goatRed = {
     name = "RED",
     ix = 1,
-    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_red.png"
+    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_red.png",
+    token = "file:////Users/connor/Desktop/scapegoat/hs/token_red.png"
 }
 
 local goatBlue = {
     name = "BLUE",
     ix = 2,
-    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_blue.png"
+    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_blue.png",
+    token = "file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"
 }
 
 local goatYellow = {
     name = "YELLOW",
     ix = 3,
-    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_yellow.png"
+    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_yellow.png",
+    token = "file:////Users/connor/Desktop/scapegoat/hs/token_yellow.png"
 }
 
 local goatGreen = {
     name = "GREEN",
     ix = 4,
-    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_green.png"
+    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_green.png",
+    token = "file:////Users/connor/Desktop/scapegoat/hs/token_green.png"
 }
 
 local goatBrown = {
     name = "BROWN",
     ix = 5,
-    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_brown.png"
+    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_brown.png",
+    token = "file:////Users/connor/Desktop/scapegoat/hs/token_brown.png"
 }
 
 local goatPurple = {
     name = "PURPLE",
     ix = 6,
-    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_purple.png"
+    placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_purple.png",
+    token = "file:////Users/connor/Desktop/scapegoat/hs/token_purple.png"
 }
 
 -- () -> [Goat]
@@ -439,7 +454,27 @@ function startGame()
         for i=1,remainingNum/#players do
             obj.deal(1)
         end
+
     end)
+
+    -- spawn player tokens
+    Wait.frames(function()
+        shuffleTable(goats)
+
+        local tokenSpawnLocs = {
+            {1,5,-8}, -- first location, left
+            {1,5,-4.5}, -- second location, left
+            {1,5,0}, -- third location
+            {1,5,3.5}, -- fourth location
+            {1,5,-6}, -- first location, right
+            {1,5,-2.5}, -- second location, right
+        }
+
+        for i, goat in ipairs(goats) do
+            spawn(mkPlayerToken(goat.token), tokenSpawnLocs[i], {0,90,0})
+        end
+    end, 60)
+
     -- TODO: spawn prep tokens
 end
 
@@ -467,8 +502,16 @@ spawn(deck, {-10,0,0}, {180,180,0}, function(obj)
     for i=1,remainingNum/2 do
         obj.deal(1)
     end
+
+    Wait.frames(function()
+        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,-8}, {0,90,0})
+        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,-6}, {0,90,0})
+        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,-4.5}, {0,90,0})
+        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,-2.5}, {0,90,0})
+        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,0}, {0,90,0})
+        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,3.5}, {0,90,0})
+    end, 60)
 end)
 --]]
 
-spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"))
---startGame()
+startGame()
