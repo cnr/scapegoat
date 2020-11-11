@@ -26,25 +26,34 @@ main = do
     redImg <- loadImage "../scapegoat_joe.png"
     blueImg <- loadImage "../scapegoat_bill.png"
     yellowImg <- loadImage "../scapegoat_outsourced.png"
+    greenImg <- loadImage "../scapegoat_connor.png"
     brownImg <- loadImage "../scapegoat_brad.png"
     purpleImg <- loadImage "../scapegoat_lance.png"
+
 
     let red = Goat "joe" redImg (sRGB24 0xED 0x24 0x29)
     let blue = Goat "bill" blueImg (sRGB24 0x17 0xA3 0xDD)
     let yellow = Goat "outsourced" yellowImg (sRGB24 0xF4 0xEB 0x22)
-    -- TODO
-    let green = yellow
+    let green = Goat "connor" greenImg (sRGB24 0x00 0xA5 0x50)
     let brown = Goat "brad" brownImg (sRGB24 0xAC 0x6C 0x29)
     let purple = Goat "lance" purpleImg (sRGB24 0xA1 0x79 0xB2)
 
     let goats = [red,blue,yellow,green,brown,purple]
 
-    -- card matrix
-    renderSVG "deck.svg" nosize (mkCardRows goats)
-    renderSVG "back.svg" nosize (oneGoatCard red)
+    greyImg <- loadImage "../scapegoat_maja.png"
+    let innocent = Goat "maja" greyImg (sRGB24 0x4F 0x50 0x50)
 
-    -- six-goat card
-    renderSVG "six.svg" nosize (sixGoatCard red blue yellow green brown purple)
+    -- 6x6 goat "multiplication table" matrix
+    let cardMatrix = mkCardMatrix goats
+    -- card with six goats on it
+    let sixGoats = sixGoatCard red blue yellow green brown purple
+    -- full-grey innocent goat card
+    let innocentCard = mkCard innocent innocent
+
+    -- row 1 col 7 is six goats
+    -- row 2 col 7 is innocent goat
+    renderSVG "deck.svg" nosize (cardMatrix ||| (sixGoats === innocentCard))
+    renderSVG "back.svg" nosize (oneGoatCard red)
 
     -- placemats
     stepsImg <- loadImage "../turnsteps.png"
@@ -81,8 +90,8 @@ mkPlacemat steps goat = content `atop` padder
 
 ---------- Card matrix (one- and two-goat cards)
 
-mkCardRows :: [Goat] -> Diagram SVG
-mkCardRows goats = vcat [mkCardRow goats goat | goat <- goats]
+mkCardMatrix :: [Goat] -> Diagram SVG
+mkCardMatrix goats = vcat [mkCardRow goats goat | goat <- goats]
 
 mkCardRow :: [Goat] -> Goat -> Diagram SVG
 mkCardRow goats goat = hcat $ map (mkCard goat) goats
