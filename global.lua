@@ -48,7 +48,7 @@ local function assetID(front)
 end
 
 -- URL -> URL -> Int -> Int -> Asset
-function mkAsset(front, back, width, height)
+function mkAsset(front, back, width, height, extra)
     local res = {}
     res.data = {
         FaceURL = front,
@@ -58,12 +58,15 @@ function mkAsset(front, back, width, height)
         BackIsHidden = true,
         Type = 0
     }
+    for k,v in pairs(extra or {}) do
+        res.data[k] = v
+    end
     res.id = assetID(front)
     return res
 end
 
 -- Asset -> Int -> Int -> Card
-function mkCard(asset, row, column)
+function mkCard(asset, row, column, extra)
     local card = baseObj()
     card.Name = 'Card'
 
@@ -72,6 +75,10 @@ function mkCard(asset, row, column)
     card.CardID = asset.id .. ix
     card.CustomDeck = {[asset.id] = asset.data}
     card.BackIsHidden = true
+
+    for k,v in pairs(extra or {}) do
+        card[k] = v
+    end
     return card
 end
 
@@ -309,6 +316,19 @@ function deckForGoats(goats)
     end
 end
 
+---------- locations
+
+local locationsAsset = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/locations_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/locations_back.png", 5, 1, {UniqueBack = true})
+
+-- order: prepare, stash, spy, trade, cops
+local prepareCard = mkCard(locationsAsset, 1, 1, {SidewaysCard = true})
+local stashCard = mkCard(locationsAsset, 1, 2, {SidewaysCard = true})
+local spyCard = mkCard(locationsAsset, 1, 3, {SidewaysCard = true})
+local tradeCard = mkCard(locationsAsset, 1, 4, {SidewaysCard = true})
+local copsCard = mkCard(locationsAsset, 1, 5, {SidewaysCard = true})
+
+local locationsDeck = mkDeck({prepareCard, stashCard, spyCard, tradeCard, copsCard})
+
 ---------- placemats
 
 -- Player -> Goat -> IO ()
@@ -376,7 +396,9 @@ function startGame()
     -- TODO: spawn prep tokens
 end
 
-local deck = deckForGoats({goatYellow,goatBlue,goatRed})
-spawn(deck)
+--local deck = deckForGoats({goatYellow,goatBlue,goatRed})
+--spawn(deck)
+
+spawn(locationsDeck)
 
 --startGame()
