@@ -124,13 +124,18 @@ function mkPlacemat(image)
 end
 
 -- Spawnable a => a -> IO ()
-function spawn(obj, pos, rotation)
+function spawn(obj, pos, rotation, cb)
     local table = {json = JSON.encode(obj)}
     table.position = pos or {0,5,0}
     table.rotation = rotation or {0,0,0}
-    --table.scale = {1,1,1}
     table.sound = true
+    table.callback_function = cb
     spawnObjectJSON(table)
+end
+
+-- Object -> Pos -> Rotation -> Bool -> IO ()
+function dealTo(deckObj, pos, rotation, flipped)
+    deckObj.takeObject({position = pos or {}, rotation = rotation or {}, flip = flipped or false})
 end
 
 ----- goats
@@ -318,7 +323,8 @@ end
 
 ---------- locations
 
-local locationsAsset = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/locations_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/locations_back.png", 5, 1, {UniqueBack = true})
+--local locationsAsset = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/locations_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/locations_back.png", 5, 1, {UniqueBack = true})
+local locationsAsset = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776167284343046184/locations_deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776167284343046184/locations_deck.png", 5, 1, {UniqueBack = true})
 
 -- order: prepare, stash, spy, trade, cops
 local prepareCard = mkCard(locationsAsset, 1, 1, {SidewaysCard = true})
@@ -327,7 +333,7 @@ local spyCard = mkCard(locationsAsset, 1, 3, {SidewaysCard = true})
 local tradeCard = mkCard(locationsAsset, 1, 4, {SidewaysCard = true})
 local copsCard = mkCard(locationsAsset, 1, 5, {SidewaysCard = true})
 
-local locationsDeck = mkDeck({prepareCard, stashCard, spyCard, tradeCard, copsCard})
+--local locationsDeck = mkDeck({prepareCard, stashCard, spyCard, tradeCard, copsCard})
 
 ---------- placemats
 
@@ -389,16 +395,59 @@ function startGame()
 
     local deck = deckForGoats(goats)
 
-    -- TODO: remove
-    spawn(deck)
-    -- TODO: spawn cards + deal to players and locations
-    -- TODO: spawn locations
+    -- spawn locations
+    spawn(prepareCard, {0,0,-7})
+    spawn(spyCard, {0,0,-3.5})
+    spawn(stashCard, {0,0,0})
+    spawn(tradeCard, {0,0,3.5})
+    spawn(copsCard, {0,0,7})
+
+    -- spawn deck; deal cards to locations and players
+    spawn(deck, {-10,0,0}, {180,180,0}, function(obj)
+        obj.randomize()
+
+        dealTo(obj, {-3.5,0,-7}, {0,90,0}, true)
+        dealTo(obj, {-3.5,0,-3.5}, {0,90,0}, true)
+        dealTo(obj, {-3.5,0,-0}, {0,90,0}, true)
+        dealTo(obj, {-3.5,0,3.5}, {0,90,0}, true)
+
+        dealTo(obj, {2.5,0,0})
+        dealTo(obj, {4.7,0,0})
+        dealTo(obj, {6.9,0,0})
+
+        local remainingNum = #obj.getObjects()
+        for i=1,remainingNum/#players do
+            obj.deal(1)
+        end
+    end)
     -- TODO: spawn prep tokens
 end
 
---local deck = deckForGoats({goatYellow,goatBlue,goatRed})
---spawn(deck)
+--[[
+spawn(prepareCard, {0,0,-7})
+spawn(spyCard, {0,0,-3.5})
+spawn(stashCard, {0,0,0})
+spawn(tradeCard, {0,0,3.5})
+spawn(copsCard, {0,0,7})
 
-spawn(locationsDeck)
+local deck = deckForGoats({goatYellow,goatBlue,goatRed})
+spawn(deck, {-10,0,0}, {180,180,0}, function(obj)
+    obj.randomize()
+
+    dealTo(obj, {-3.5,0,-7}, {0,90,0}, true)
+    dealTo(obj, {-3.5,0,-3.5}, {0,90,0}, true)
+    dealTo(obj, {-3.5,0,-0}, {0,90,0}, true)
+    dealTo(obj, {-3.5,0,3.5}, {0,90,0}, true)
+
+    dealTo(obj, {2.5,0,0})
+    dealTo(obj, {4.7,0,0})
+    dealTo(obj, {6.9,0,0})
+
+    local remainingNum = #obj.getObjects()
+    for i=1,remainingNum/2 do
+        obj.deal(1)
+    end
+end)
+--]]
 
 --startGame()
