@@ -55,7 +55,7 @@ main = do
     renderSVG "goat_deck.svg" nosize (cardMatrix ||| (sixGoats === innocentCard))
 
     backImg <- loadImage "../scapegoat_back.png"
-    let backGoat = Goat "back" backImg (sRGB24 0x77 0x05 0x51)
+    let backGoat = Goat "back" backImg (sRGB24 0x00 0x00 0x00)
     renderSVG "goat_back.svg" nosize (oneGoatCard backGoat)
 
     ---------- GOAT PLACEMATS
@@ -66,6 +66,24 @@ main = do
     renderSVG "placemat_green.svg" nosize $ mkPlacemat stepsImg green
     renderSVG "placemat_brown.svg" nosize $ mkPlacemat stepsImg brown
     renderSVG "placemat_purple.svg" nosize $ mkPlacemat stepsImg purple
+
+    ---------- LOCATION DECK
+    let rotated = rotate ((-90) @@ deg)
+    stashImg <- rotated <$> loadImage "../location_stash.png"
+    -- TODO
+    let prepareFrontImg = stashImg
+    let prepareBackImg = stashImg
+    spyImg <- rotated <$> loadImage "../location_spy.png"
+    tradeImg <- rotated <$> loadImage "../location_trade.png"
+    copsBackImg <- rotated <$> loadImage "../location_cops_back.png"
+    -- TODO
+    let copsFrontImg = copsBackImg
+
+    let locationsFront = prepareFrontImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
+    let locationsBack = prepareBackImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
+
+    renderSVG "locations_deck.svg" nosize locationsFront
+    renderSVG "locations_back.svg" nosize locationsBack
 
 loadImage :: FilePath -> IO (Diagram SVG)
 loadImage path = loadImageEmb path >>= either (ioError . userError) (pure . image)
