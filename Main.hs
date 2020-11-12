@@ -68,6 +68,7 @@ main = do
     renderSVG "placemat_purple.svg" nosize $ mkPlacemat stepsImg purple
 
     ---------- LOCATION DECK
+    -- TODO: scale location cards
     let rotated = rotate ((-90) @@ deg)
     stashImg <- rotated <$> loadImage "../location_stash.png"
     -- TODO
@@ -75,9 +76,8 @@ main = do
     let prepareBackImg = stashImg
     spyImg <- rotated <$> loadImage "../location_spy.png"
     tradeImg <- rotated <$> loadImage "../location_trade.png"
+    copsFrontImg <- rotated <$> loadImage "../location_cops.png"
     copsBackImg <- rotated <$> loadImage "../location_cops_back.png"
-    -- TODO
-    let copsFrontImg = copsBackImg
 
     let locationsFront = prepareFrontImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
     let locationsBack = prepareBackImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
