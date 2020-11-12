@@ -425,7 +425,7 @@ function startGame()
 
             goatToBlame = otherGoats[math.random(#otherGoats)]
         end
-        broadcastToColor(goatToBlame.name .. ' GOAT is the scape goat', player.color)
+        broadcastToColor(goatToBlame.name .. ' GOAT is the scapegoat', player.color)
     end
 
     local deck = deckForGoats(goats)
