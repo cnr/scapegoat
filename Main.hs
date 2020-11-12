@@ -69,7 +69,7 @@ main = do
 
     ---------- LOCATION DECK
     -- TODO: scale location cards
-    let rotated = rotate ((-90) @@ deg)
+    let rotated = scaleUToX 750 . rotate ((-90) @@ deg)
     stashImg <- rotated <$> loadImage "../location_stash.png"
     -- TODO
     let prepareFrontImg = stashImg
@@ -79,7 +79,7 @@ main = do
     copsFrontImg <- rotated <$> loadImage "../location_cops.png"
     copsBackImg <- rotated <$> loadImage "../location_cops_back.png"
 
-    let locationsFront = prepareFrontImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
+    let locationsFront = prepareFrontImg ||| stashImg ||| spyImg ||| tradeImg ||| copsFrontImg
     let locationsBack = prepareBackImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
 
     renderSVG "locations_deck.svg" nosize locationsFront
