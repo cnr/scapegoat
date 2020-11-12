@@ -462,12 +462,12 @@ function startGame()
         shuffleTable(goats)
 
         local tokenSpawnLocs = {
-            {1,5,-8}, -- first location, left
-            {1,5,-4.5}, -- second location, left
+            {1.75,5,-7.8}, -- first location, left
+            {1.75,5,-4.3}, -- second location, left
             {1,5,0}, -- third location
-            {1,5,3.5}, -- fourth location
-            {1,5,-6}, -- first location, right
-            {1,5,-2.5}, -- second location, right
+            {1.75,5,3.5}, -- fourth location
+            {1.75,5,-6}, -- first location, right
+            {1.75,5,-2.5}, -- second location, right
         }
 
         for i, goat in ipairs(goats) do
