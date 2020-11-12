@@ -231,8 +231,8 @@ end
 
 ---------- card sets
 
---local matrix = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/goat_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/goat_back.png", 7, 6)
-local matrix = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776150866024857610/deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776159476171931668/goat_back.png", 7, 6)
+local matrix = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/goat_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/goat_back.png", 7, 6)
+--local matrix = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776150866024857610/deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776159476171931668/goat_back.png", 7, 6)
 
 local function half(top, bottom)
     return mkCard(matrix, top, bottom)
@@ -358,8 +358,8 @@ end
 
 ---------- locations
 
---local locationsAsset = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/locations_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/locations_back.png", 5, 1, {UniqueBack = true})
-local locationsAsset = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776167284343046184/locations_deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776167284343046184/locations_deck.png", 5, 1, {UniqueBack = true})
+local locationsAsset = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/locations_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/locations_back.png", 5, 1, {UniqueBack = true})
+--local locationsAsset = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776167284343046184/locations_deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776167284343046184/locations_deck.png", 5, 1, {UniqueBack = true})
 
 -- order: prepare, stash, spy, trade, cops
 local prepareCard = mkCard(locationsAsset, 1, 1, {SidewaysCard = true})
