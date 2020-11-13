@@ -154,6 +154,13 @@ function mkPlayerToken(image)
     return tile
 end
 
+function mkPrepareToken()
+    local piece = baseObj()
+    piece.Name = 'go_game_piece_white'
+    piece.Hands = false
+    return piece
+end
+
 -- Spawnable a => a -> IO ()
 function spawn(obj, pos, rotation, cb)
     local table = {json = JSON.encode(obj)}
@@ -415,8 +422,6 @@ local spyCard = mkCard(locationsAsset, 1, 3, {SidewaysCard = true})
 local tradeCard = mkCard(locationsAsset, 1, 4, {SidewaysCard = true})
 local copsCard = mkCard(locationsAsset, 1, 5, {SidewaysCard = true})
 
---local locationsDeck = mkDeck({prepareCard, stashCard, spyCard, tradeCard, copsCard})
-
 ---------- placemats
 
 -- Player -> Goat -> IO ()
@@ -432,6 +437,26 @@ end
 
 
 ---------- game preparation
+
+-- Int -> [Goat]
+function getRandomGoats(num)
+    local goats = {}
+    local goatPool = allGoats()
+    for i=1,num do
+        goats[#goats+1] = table.remove(goatPool, math.random(#goatPool))
+    end
+    return goats
+end
+
+-- attached to the "click to start" button
+function clickToStart(obj, playerColor)
+    if not(Player[playerColor].admin) then
+        return
+    end
+
+    startGame()
+    destroyObject(obj)
+end
 
 function startGame()
     local players = {}
@@ -452,11 +477,7 @@ function startGame()
     end
 
     -- get random goats (indices will map to `players` indices)
-    local goats = {}
-    local goatPool = allGoats()
-    for i=1,#players do
-        goats[#goats+1] = table.remove(goatPool, math.random(#goatPool))
-    end
+    local goats = getRandomGoats(#players)
 
     local scapegoat = goats[math.random(#goats)]
 
@@ -483,6 +504,10 @@ function startGame()
     spawn(stashCard, {0,0,0})
     spawn(tradeCard, {0,0,3.5})
     spawn(copsCard, {0,0,7})
+
+    -- spawn prepare tokens
+    spawn(mkPrepareToken(), {0.4,1.5,-7.6})
+    spawn(mkPrepareToken(), {0.4,1.5,-6.2})
 
     -- spawn deck; deal cards to locations and players
     spawn(deck, {-10,0,0}, {180,180,0}, function(obj)
@@ -525,40 +550,18 @@ function startGame()
     -- TODO: spawn prep tokens
 end
 
---[[
-spawn(prepareCard, {0,0,-7})
-spawn(spyCard, {0,0,-3.5})
-spawn(stashCard, {0,0,0})
-spawn(tradeCard, {0,0,3.5})
-spawn(copsCard, {0,0,7})
-
-local deck = deckForGoats({goatYellow,goatBlue,goatRed})
-spawn(deck, {-10,0,0}, {180,180,0}, function(obj)
-    obj.randomize()
-
-    dealTo(obj, {-3.5,0,-7}, {0,90,0}, true)
-    dealTo(obj, {-3.5,0,-3.5}, {0,90,0}, true)
-    dealTo(obj, {-3.5,0,-0}, {0,90,0}, true)
-    dealTo(obj, {-3.5,0,3.5}, {0,90,0}, true)
-
-    dealTo(obj, {2.5,0,0})
-    dealTo(obj, {4.7,0,0})
-    dealTo(obj, {6.9,0,0})
-
-    local remainingNum = #obj.getObjects()
-    for i=1,remainingNum/2 do
-        obj.deal(1)
-    end
-
-    Wait.frames(function()
-        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,-8}, {0,90,0})
-        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,-6}, {0,90,0})
-        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,-4.5}, {0,90,0})
-        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,-2.5}, {0,90,0})
-        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,0}, {0,90,0})
-        spawn(mkPlayerToken("file:////Users/connor/Desktop/scapegoat/hs/token_blue.png"), {1,5,3.5}, {0,90,0})
-    end, 60)
-end)
---]]
-
 startGame()
+
+-- TODO: get actual guid
+--getObjectFromGUID('abcdef').createButton({click_function='clickToStart', label='Click to start\n(3-6 Players)', position={0,0,0}, width=1000, height=500})
+
+-- six goat card
+--spawn(mkCard(matrix, 1, 7))
+
+--startGame()
+
+-- TODO list:
+-- - fix six-goat card
+-- - rulebook
+-- - prepare workshop release (save, table, ...)
+-- - find somewhere new to upload assets? steam?
