@@ -1,3 +1,6 @@
+-- set the random seed
+math.randomseed(os.time())
+
 -- cards
 function baseObj()
     return {
@@ -175,6 +178,7 @@ end
 --   , token :: URL
 --   }
 
+--[[
 local goatRed = {
     name = "RED",
     ix = 1,
@@ -216,6 +220,49 @@ local goatPurple = {
     placemat = "file:////Users/connor/Desktop/scapegoat/hs/placemat_purple.png",
     token = "file:////Users/connor/Desktop/scapegoat/hs/token_purple.png"
 }
+--]]
+
+local goatRed = {
+    name = "RED",
+    ix = 1,
+    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529095273086996/placemat_red.png",
+    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529159345274920/token_red.png"
+}
+
+local goatBlue = {
+    name = "BLUE",
+    ix = 2,
+    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529087652954162/placemat_blue.png",
+    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529224600387649/token_blue.png"
+}
+
+local goatYellow = {
+    name = "YELLOW",
+    ix = 3,
+    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529096548286494/placemat_yellow.png",
+    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529170607243304/token_yellow.png"
+}
+
+local goatGreen = {
+    name = "GREEN",
+    ix = 4,
+    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529091792338945/placemat_green.png",
+    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529240471633940/token_green.png"
+}
+
+local goatBrown = {
+    name = "BROWN",
+    ix = 5,
+    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529090135064627/placemat_brown.png",
+    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529267865550918/token_brown.png"
+}
+
+local goatPurple = {
+    name = "PURPLE",
+    ix = 6,
+    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529093533237278/placemat_purple.png",
+    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529145135759370/token_purple.png"
+}
 
 -- () -> [Goat]
 function allGoats()
@@ -231,8 +278,8 @@ end
 
 ---------- card sets
 
-local matrix = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/goat_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/goat_back.png", 7, 6)
---local matrix = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776150866024857610/deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776159476171931668/goat_back.png", 7, 6)
+--local matrix = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/goat_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/goat_back.png", 7, 6)
+local matrix = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776529083723022336/goat_deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776529075946651658/goat_back.png", 7, 6)
 
 local function half(top, bottom)
     return mkCard(matrix, top, bottom)
@@ -358,8 +405,8 @@ end
 
 ---------- locations
 
-local locationsAsset = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/locations_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/locations_back.png", 5, 1, {UniqueBack = true})
---local locationsAsset = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776167284343046184/locations_deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776167284343046184/locations_deck.png", 5, 1, {UniqueBack = true})
+--local locationsAsset = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/locations_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/locations_back.png", 5, 1, {UniqueBack = true})
+local locationsAsset = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776529085987815454/locations_deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776529084343386112/locations_back.png", 5, 1, {UniqueBack = true})
 
 -- order: prepare, stash, spy, trade, cops
 local prepareCard = mkCard(locationsAsset, 1, 1, {SidewaysCard = true})
