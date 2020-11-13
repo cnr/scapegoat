@@ -232,43 +232,43 @@ local goatPurple = {
 local goatRed = {
     name = "RED",
     ix = 1,
-    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529095273086996/placemat_red.png",
-    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529159345274920/token_red.png"
+    placemat = "http://cloud-3.steamusercontent.com/ugc/1681493590731581874/E4353D609F38C7651B617D7AFE98B60726967175/",
+    token = "http://cloud-3.steamusercontent.com/ugc/1681493590731583875/2ECBDF400EF13EABA1E81A02E28B43CF8580BB03/"
 }
 
 local goatBlue = {
     name = "BLUE",
     ix = 2,
-    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529087652954162/placemat_blue.png",
-    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529224600387649/token_blue.png"
+    placemat = "http://cloud-3.steamusercontent.com/ugc/1681493590731580258/F552C2012C77446E874CDFF01F92637549B5F2BA/",
+    token = "http://cloud-3.steamusercontent.com/ugc/1681493590731582573/72F2CE387DF71F2473260BEB0C6358C506F0A0D4/"
 }
 
 local goatYellow = {
     name = "YELLOW",
     ix = 3,
-    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529096548286494/placemat_yellow.png",
-    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529170607243304/token_yellow.png"
+    placemat = "http://cloud-3.steamusercontent.com/ugc/1681493590731582224/15C1998101F12BAE43CA35E3207390380BB5FB69/",
+    token = "http://cloud-3.steamusercontent.com/ugc/1681493590731584189/267BAAADF3750B7BDE0AB6C2CC14A58E243B8808/"
 }
 
 local goatGreen = {
     name = "GREEN",
     ix = 4,
-    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529091792338945/placemat_green.png",
-    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529240471633940/token_green.png"
+    placemat = "http://cloud-3.steamusercontent.com/ugc/1681493590731581143/F95DA8C0C39B684389197DD43B6751341CD6FD5F/",
+    token = "http://cloud-3.steamusercontent.com/ugc/1681493590731583218/9344C893F33B8BFC617D70F21B98EC2EEDFC67D6/"
 }
 
 local goatBrown = {
     name = "BROWN",
     ix = 5,
-    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529090135064627/placemat_brown.png",
-    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529267865550918/token_brown.png"
+    placemat = "http://cloud-3.steamusercontent.com/ugc/1681493590731580809/0CBE7A2C36F14B71C3E38B1A113049D8855435CD/",
+    token = "http://cloud-3.steamusercontent.com/ugc/1681493590731582897/7E85987E4CD27D264EFA7209A848BF2CEBE75DBA/"
 }
 
 local goatPurple = {
     name = "PURPLE",
     ix = 6,
-    placemat = "https://cdn.discordapp.com/attachments/199605031199178752/776529093533237278/placemat_purple.png",
-    token = "https://cdn.discordapp.com/attachments/199605031199178752/776529145135759370/token_purple.png"
+    placemat = "http://cloud-3.steamusercontent.com/ugc/1681493590731581497/2B85128720CC3BFE71C647A37FAB4516D49C6489/",
+    token = "http://cloud-3.steamusercontent.com/ugc/1681493590731583520/886CB9BA414ABCB12B6F7F9E768E9066ED4B3110/"
 }
 
 -- () -> [Goat]
@@ -286,7 +286,7 @@ end
 ---------- card sets
 
 --local matrix = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/goat_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/goat_back.png", 7, 6)
-local matrix = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776529083723022336/goat_deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776529075946651658/goat_back.png", 7, 6)
+local matrix = mkAsset("http://cloud-3.steamusercontent.com/ugc/1681493590731577840/FC98BA38BDD0C9D480CA20A56B529D8A2E724A78/", "http://cloud-3.steamusercontent.com/ugc/1681493590731578640/4BF4132E93F5B5D6513EC7B7CD84C8C69D31F44E/", 7, 6)
 
 local function half(top, bottom)
     return mkCard(matrix, top, bottom)
@@ -413,7 +413,7 @@ end
 ---------- locations
 
 --local locationsAsset = mkAsset("file:////Users/connor/Desktop/scapegoat/hs/locations_deck.png", "file:////Users/connor/Desktop/scapegoat/hs/locations_back.png", 5, 1, {UniqueBack = true})
-local locationsAsset = mkAsset("https://cdn.discordapp.com/attachments/199605031199178752/776529085987815454/locations_deck.png", "https://cdn.discordapp.com/attachments/199605031199178752/776529084343386112/locations_back.png", 5, 1, {UniqueBack = true})
+local locationsAsset = mkAsset("http://cloud-3.steamusercontent.com/ugc/1681493590731579409/E96EDD0A2ABE27787F8D1367FAC9E68078583CB7/", "http://cloud-3.steamusercontent.com/ugc/1681493590731578993/B0090EC9B72FC7E9684B6E525514C19F8ABBB26F/", 5, 1, {UniqueBack = true})
 
 -- order: prepare, stash, spy, trade, cops
 local prepareCard = mkCard(locationsAsset, 1, 1, {SidewaysCard = true})
@@ -438,6 +438,17 @@ end
 
 ---------- game preparation
 
+function getSeatedPlayers()
+    local players = {}
+    for _, player in ipairs(Player.getPlayers()) do
+        if player.seated then
+            players[#players+1] = player
+        end
+    end
+
+    return players
+end
+
 -- Int -> [Goat]
 function getRandomGoats(num)
     local goats = {}
@@ -454,17 +465,24 @@ function clickToStart(obj, playerColor)
         return
     end
 
+    local players = getSeatedPlayers()
+
+    if #players < 3 then
+        broadcastToAll('Not enough players (need 3-6)')
+        return
+    end
+
+    if #players > 6 then
+        broadcastToAll('Too many players (need 3-6)')
+        return
+    end
+
     startGame()
     destroyObject(obj)
 end
 
-function startGame()
-    local players = {}
-    for _, player in ipairs(Player.getPlayers()) do
-        if player.seated then
-            players[#players+1] = player
-        end
-    end
+function startGame(players)
+    local players = getSeatedPlayers()
 
     if #players < 3 then
         broadcastToAll('Not enough players (need 3-6)')
@@ -550,18 +568,4 @@ function startGame()
     -- TODO: spawn prep tokens
 end
 
-startGame()
-
--- TODO: get actual guid
 --getObjectFromGUID('abcdef').createButton({click_function='clickToStart', label='Click to start\n(3-6 Players)', position={0,0,0}, width=1000, height=500})
-
--- six goat card
---spawn(mkCard(matrix, 1, 7))
-
---startGame()
-
--- TODO list:
--- - fix six-goat card
--- - rulebook
--- - prepare workshop release (save, table, ...)
--- - find somewhere new to upload assets? steam?
