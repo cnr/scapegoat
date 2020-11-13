@@ -68,16 +68,15 @@ main = do
     renderSVG "placemat_purple.svg" nosize $ mkPlacemat stepsImg purple
 
     ---------- LOCATION DECK
-    -- TODO: scale location cards
-    let rotated = scaleUToX 750 . rotate ((-90) @@ deg)
-    stashImg <- rotated <$> loadImage "../location_stash.png"
-    -- TODO
-    let prepareFrontImg = stashImg
-    let prepareBackImg = stashImg
-    spyImg <- rotated <$> loadImage "../location_spy.png"
-    tradeImg <- rotated <$> loadImage "../location_trade.png"
-    copsFrontImg <- rotated <$> loadImage "../location_cops.png"
-    copsBackImg <- rotated <$> loadImage "../location_cops_back.png"
+    -- scale to 50% size and rotate 1/4 turn right
+    let formatLocation = scaleUToX 750 . rotate ((-90) @@ deg)
+    prepareFrontImg <- formatLocation <$> loadImage "../location_prepare.png"
+    prepareBackImg <- formatLocation <$> loadImage "../location_prepare_back.png"
+    spyImg <- formatLocation <$> loadImage "../location_spy.png"
+    stashImg <- formatLocation <$> loadImage "../location_stash.png"
+    tradeImg <- formatLocation <$> loadImage "../location_trade.png"
+    copsFrontImg <- formatLocation <$> loadImage "../location_cops.png"
+    copsBackImg <- formatLocation <$> loadImage "../location_cops_back.png"
 
     let locationsFront = prepareFrontImg ||| stashImg ||| spyImg ||| tradeImg ||| copsFrontImg
     let locationsBack = prepareBackImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
@@ -156,8 +155,15 @@ twoGoatCard top bottom = (goatImage top === goatImage bottom) # scaleUToX cardWi
 ---------- six-goat card
 
 sixGoatCard :: Goat -> Goat -> Goat -> Goat -> Goat -> Goat -> Diagram SVG
-sixGoatCard one two three four five six = overlayed `atop` padder
+sixGoatCard one two three four five six = ((mkOne one ||| mkOne two) === (mkOne three ||| mkOne four) === (mkOne five ||| mkOne six)) # center
     where
-        overlayed = ((goatImage one ||| goatImage two) === (goatImage three ||| goatImage four) === (goatImage five ||| goatImage six)) # scaleUToX cardWidth # center
         scaled = goatImage one # scaleUToX cardWidth
-        padder = (rect (width scaled) (height scaled * 2) :: Diagram SVG) # fillColor black # lineWidth 0 # center
+
+        fullCardWidth = width scaled
+        oneTileWide = fullCardWidth / 2
+
+        fullCardHeight = height scaled * 2
+        oneTileTall = fullCardHeight / 3
+
+        -- make one 1/6 tile
+        mkOne goat = goatImage goat # scaleUToX oneTileWide `atop` ((rect oneTileWide oneTileTall :: Diagram SVG) # fillColor (goatColor goat) # lineWidth 0 # center)
