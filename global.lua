@@ -441,7 +441,7 @@ end
 function getSeatedPlayers()
     local players = {}
     for _, player in ipairs(Player.getPlayers()) do
-        if player.seated then
+        if player.seated and (player.getHandTransform() ~= null) then
             players[#players+1] = player
         end
     end
