@@ -60,20 +60,20 @@ main = do
 
     -- row 1 col 7 is six goats
     -- row 2 col 7 is innocent goat
-    renderSVG "svg-assets/goat_deck.svg" nosize (cardMatrix ||| (sixGoats === innocentCard))
+    renderSVG "raw-assets/svg/goat_deck.svg" nosize (cardMatrix ||| (sixGoats === innocentCard))
 
     backImg <- loadImage "raw-assets/scapegoat_back.png"
     let backGoat = Goat "back" backImg (sRGB24 0x00 0x00 0x00)
-    renderSVG "svg-assets/goat_back.svg" nosize (oneGoatCard backGoat)
+    renderSVG "raw-assets/svg/goat_back.svg" nosize (oneGoatCard backGoat)
 
     ---------- GOAT PLACEMATS
     stepsImg <- loadImage "raw-assets/turnsteps.png"
-    renderSVG "svg-assets/placemat_red.svg" nosize $ mkPlacemat stepsImg red
-    renderSVG "svg-assets/placemat_blue.svg" nosize $ mkPlacemat stepsImg blue
-    renderSVG "svg-assets/placemat_yellow.svg" nosize $ mkPlacemat stepsImg yellow
-    renderSVG "svg-assets/placemat_green.svg" nosize $ mkPlacemat stepsImg green
-    renderSVG "svg-assets/placemat_brown.svg" nosize $ mkPlacemat stepsImg brown
-    renderSVG "svg-assets/placemat_purple.svg" nosize $ mkPlacemat stepsImg purple
+    renderSVG "raw-assets/svg/placemat_red.svg" nosize $ mkPlacemat stepsImg red
+    renderSVG "raw-assets/svg/placemat_blue.svg" nosize $ mkPlacemat stepsImg blue
+    renderSVG "raw-assets/svg/placemat_yellow.svg" nosize $ mkPlacemat stepsImg yellow
+    renderSVG "raw-assets/svg/placemat_green.svg" nosize $ mkPlacemat stepsImg green
+    renderSVG "raw-assets/svg/placemat_brown.svg" nosize $ mkPlacemat stepsImg brown
+    renderSVG "raw-assets/svg/placemat_purple.svg" nosize $ mkPlacemat stepsImg purple
 
     ---------- LOCATION DECK
     -- scale to 50% size and rotate 1/4 turn right
@@ -89,17 +89,17 @@ main = do
     let locationsFront = prepareFrontImg ||| stashImg ||| spyImg ||| tradeImg ||| copsFrontImg
     let locationsBack = prepareBackImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
 
-    renderSVG "svg-assets/locations_deck.svg" nosize locationsFront
-    renderSVG "svg-assets/locations_back.svg" nosize locationsBack
+    renderSVG "raw-assets/svg/locations_deck.svg" nosize locationsFront
+    renderSVG "raw-assets/svg/locations_back.svg" nosize locationsBack
 
     ---------- TOKENS
 
-    renderSVG "svg-assets/token_red.svg" nosize $ mkToken red
-    renderSVG "svg-assets/token_blue.svg" nosize $ mkToken blue
-    renderSVG "svg-assets/token_yellow.svg" nosize $ mkToken yellow
-    renderSVG "svg-assets/token_green.svg" nosize $ mkToken green
-    renderSVG "svg-assets/token_brown.svg" nosize $ mkToken brown
-    renderSVG "svg-assets/token_purple.svg" nosize $ mkToken purple
+    renderSVG "raw-assets/svg/token_red.svg" nosize $ mkToken red
+    renderSVG "raw-assets/svg/token_blue.svg" nosize $ mkToken blue
+    renderSVG "raw-assets/svg/token_yellow.svg" nosize $ mkToken yellow
+    renderSVG "raw-assets/svg/token_green.svg" nosize $ mkToken green
+    renderSVG "raw-assets/svg/token_brown.svg" nosize $ mkToken brown
+    renderSVG "raw-assets/svg/token_purple.svg" nosize $ mkToken purple
 
 loadImage :: FilePath -> IO (Diagram SVG)
 loadImage path = loadImageEmb path >>= either (ioError . userError) (pure . image)
