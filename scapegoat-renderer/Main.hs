@@ -24,12 +24,12 @@ cardWidth = 474
 main :: IO ()
 main = do
     ---------- GOAT DECK
-    redImg <- loadImage "../scapegoat_joe.png"
-    blueImg <- loadImage "../scapegoat_bill.png"
-    yellowImg <- loadImage "../scapegoat_outsourced.png"
-    greenImg <- loadImage "../scapegoat_connor.png"
-    brownImg <- loadImage "../scapegoat_brad.png"
-    purpleImg <- loadImage "../scapegoat_lance.png"
+    redImg <- loadImage "../raw-assets/scapegoat_joe.png"
+    blueImg <- loadImage "../raw-assets/scapegoat_bill.png"
+    yellowImg <- loadImage "../raw-assets/scapegoat_outsourced.png"
+    greenImg <- loadImage "../raw-assets/scapegoat_connor.png"
+    brownImg <- loadImage "../raw-assets/scapegoat_brad.png"
+    purpleImg <- loadImage "../raw-assets/scapegoat_lance.png"
 
     let red = Goat "joe" redImg (sRGB24 0xED 0x24 0x29)
     let blue = Goat "bill" blueImg (sRGB24 0x17 0xA3 0xDD)
@@ -40,7 +40,7 @@ main = do
 
     let goats = [red,blue,yellow,green,brown,purple]
 
-    greyImg <- loadImage "../scapegoat_maja.png"
+    greyImg <- loadImage "../raw-assets/scapegoat_maja.png"
     let innocent = Goat "maja" greyImg (sRGB24 0x4F 0x50 0x50)
 
     -- 6x6 goat "multiplication table" matrix
@@ -54,12 +54,12 @@ main = do
     -- row 2 col 7 is innocent goat
     renderSVG "goat_deck.svg" nosize (cardMatrix ||| (sixGoats === innocentCard))
 
-    backImg <- loadImage "../scapegoat_back.png"
+    backImg <- loadImage "../raw-assets/scapegoat_back.png"
     let backGoat = Goat "back" backImg (sRGB24 0x00 0x00 0x00)
     renderSVG "goat_back.svg" nosize (oneGoatCard backGoat)
 
     ---------- GOAT PLACEMATS
-    stepsImg <- loadImage "../turnsteps.png"
+    stepsImg <- loadImage "../raw-assets/turnsteps.png"
     renderSVG "placemat_red.svg" nosize $ mkPlacemat stepsImg red
     renderSVG "placemat_blue.svg" nosize $ mkPlacemat stepsImg blue
     renderSVG "placemat_yellow.svg" nosize $ mkPlacemat stepsImg yellow
@@ -70,13 +70,13 @@ main = do
     ---------- LOCATION DECK
     -- scale to 50% size and rotate 1/4 turn right
     let formatLocation = scaleUToX 750 . rotate ((-90) @@ deg)
-    prepareFrontImg <- formatLocation <$> loadImage "../location_prepare.png"
-    prepareBackImg <- formatLocation <$> loadImage "../location_prepare_back.png"
-    spyImg <- formatLocation <$> loadImage "../location_spy.png"
-    stashImg <- formatLocation <$> loadImage "../location_stash.png"
-    tradeImg <- formatLocation <$> loadImage "../location_trade.png"
-    copsFrontImg <- formatLocation <$> loadImage "../location_cops.png"
-    copsBackImg <- formatLocation <$> loadImage "../location_cops_back.png"
+    prepareFrontImg <- formatLocation <$> loadImage "../raw-assets/location_prepare.png"
+    prepareBackImg <- formatLocation <$> loadImage "../raw-assets/location_prepare_back.png"
+    spyImg <- formatLocation <$> loadImage "../raw-assets/location_spy.png"
+    stashImg <- formatLocation <$> loadImage "../raw-assets/location_stash.png"
+    tradeImg <- formatLocation <$> loadImage "../raw-assets/location_trade.png"
+    copsFrontImg <- formatLocation <$> loadImage "../raw-assets/location_cops.png"
+    copsBackImg <- formatLocation <$> loadImage "../raw-assets/location_cops_back.png"
 
     let locationsFront = prepareFrontImg ||| stashImg ||| spyImg ||| tradeImg ||| copsFrontImg
     let locationsBack = prepareBackImg ||| stashImg ||| spyImg ||| tradeImg ||| copsBackImg
