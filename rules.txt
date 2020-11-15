@@ -1,0 +1,85 @@
+------------------------------
+Story
+
+You are all members of the Gruff Gang, the world's most renowned group of billy goat criminal masterminds. You've just pulled off your greatest caper yet: stealing the coveted golden hoof right out of the most secure bank vault in Barn City. But the cops are onto you, and someone's goat to take the fall for it. You think you know who to pin the blame on, but in this business, farmyard friends can quickly become farmyard foes.
+
+------------------------------
+Setup
+
+This game has scripted setup.
+
+Click the "start the game" button once all players are seated. A message is sent to each player's screen and chat box that says who the scapegoat is (or at least who they think the scapegoat is)
+
+------------------------------
+Object of the Game
+
+The goal of this game is to figure out whether or not you are the scapegoat. If you are, run to the cops! If you aren't, work with your fellow conspirators to successfully frame the scapegoat by collecting cards that contain their portrait.
+
+------------------------------
+Gameplay
+
+Scape Goat is played in turns. The starting player is the one who has the left-most token on the Prepare location.
+
+There are three parts to a player's turn: Movement, Action, and Evidence Swap.
+
+### Movement
+
+The first thing you do on your turn is move your player token to any new location. You cannot remain at the same location that your token is currently on.
+
+### Action
+
+Each location has a unique action. After you move your player token to a location, you perform the action for the location you have moved to. The six location actions are detailed below.
+
+1. Spy - Pick one player at the table. They must show you their hand.
+
+2. Trade - Pick one player at the table. They must exchange one evidence card from their hand with one evidence card from your hand. Both players choose which card to exchange, and the trade takes place simultaneously.
+
+3. Stash - Pick one of the facedown evidence cards at this location and add it to your hand. Then, place one card from your hand facedown to replace the missing card. You can place down the same card as you picked up.
+
+4. Prepare - Place one preparation token in front of you. When a player takes the second preparation token, the Prepare location card is flipped over to reveal the Frame/Steal side.
+
+5. Frame/Steal - If you have a preparation token, you initiate a Frame Attempt (see Frame Attempt section below). If you do not have a preparation token, steal one from any player that does have one.
+
+6. Go to the Cops - This action ends the game immediately, and causes the scapegoat to win (see Going to the Cops section below). Note: In a six-player game, a player can go to the cops at the beginning of the turn of the player sitting three spaces to their left.
+
+### Evidence Swap
+
+After you have fully completed the action of your location, you will swap evidence. Select an evidence card from your hand and place it faceup next to the location your token is on. Then pick up the faceup card that was already next to that location and add it to your hand.
+
+If you have one or more evidence cards with your own player color on it in your hand, you must select one of those cards to be placed at the location card -- that includes cards where your player color is one of the multiple colors.
+
+Some evidence cards contain a grey color that does not match any player's color. This character is an innocent bystander and is not considered the color of any player.
+
+------------------------------
+Communication
+
+All discussion and communication is allowed. That involves nonverbal communications like winks, nods, finger points, and footsy.
+
+You'll need to coordinate with the rest of the players if you want to successfully frame the scapegoat. You may say what cards you have, and tell the truth or lie while doing so, but if you give away too much information to the scapegoat and they discover they are the one being set up, they'll run to the cops, and you'll lose!
+
+------------------------------
+Game End
+
+The game can end in one of two ways: a successful Frame Attempt or someone Going to the Cops.
+
+------------------------------
+Frame Attempt
+
+When a Frame Attempt is initiated, each player must pick an evidence card from their hand, and on a count of three all players simultaneously reveal their chosen card. Frame attempts resolve in one of two ways:
+
+1. If the same color is present on all of the revealed evidence cards, then that player is successfully framed. The revealed card of the player who is framed does not need to contain their own color for the frame attempt to be successful, but all other players' revealed cards must. The game immediately ends.
+
+Each player reveals who their scapegoat is, and the true identity of the scapegoat is confirmed. If the scapegoat is the player who was framed, the rest of the players win and the scapegoat loses! (In the event that a player who is not the scapegoat is framed, then the real scapegoat wins and the rest of the players lose.)
+
+2. If there is no color that is present on all but one of the evidence cards, then the Frame Attempt fails, and the game resumes. The next players in sequence takes their turn as normal.
+
+If you aren't the scapegoat, you need a successful Frame Attempt in order to win the game, so before initiating make sure you are confident that all players except the scapegoat are holding a card with the scapegoat's picture on it!
+
+------------------------------
+Going to the Cops
+
+If you believe you are the scapegoat, and the other players are trying to frame you, your best move is to go to the cops!
+
+You can do this on your turn by moving to the Go to the Cops location and performing that action. In a six-player game only, you can also go to the cops at the beginning of the turn of the player three seats to your left.
+
+Once a player goes to the cops, that player flips the Go to the Cops card and the game ends immediately. All players count to three and then simultaneously point at who their scapegoat is. The player being pointed at by every other player is the true scapegoat! Regardless of who went to the cops, the scapegoat wins and all other players lose. So if you go to the cops, better be sure you are truly the scapegoat!
